@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+   
+   RewriteEngine On
+
+   RewriteRule ^([a-zA-Z0-9]{6})$ rt_redirect.php?rt_url=$1 [NC,L]
+   
+   ErrorDocument 404 http://localhost/xdevme.com/error404
+   
+   RewriteBase /xdevme.com/
+   RewriteRule ^index\.php$ - [L]
+   RewriteCond %{REQUEST_FILENAME} !-f
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteCond %{REQUEST_FILENAME}.php -f
+   RewriteRule ^(.+)$ /xdevme.com/$1.php [L,QSA]
+
+#RewriteEngine On
+#RewriteBase /xdevme.com/
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /xdevme.com/index.php [L]
+
+</IfModule>
+
